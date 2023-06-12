@@ -1,0 +1,16 @@
+#include <windows.h>
+#include "GetConlWin.h"
+
+HWND GetConcolWindow()
+{
+	char str[128];
+	LPWSTR title = (LPWSTR)"xxxxxxxxxxxxxxxxxx";	//новая версия Windows
+	GetConsoleTitle((LPWSTR)str, sizeof((LPWSTR)str)); // получить заголовок окна
+	SetConsoleTitle(title);						// установить новый заголовок окна
+	Sleep(100);									// ждем смены заголовка окна (100 мс);
+
+	HWND hwnd = FindWindow(NULL, (LPWSTR)title);// определяем дескриптор окна
+	SetConsoleTitle((LPWSTR)str);				//возвращаем прежний заголовок
+
+	return hwnd; // Вернуть дескриптор окна
+}// End GetConcolWindow()
