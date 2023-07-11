@@ -1,4 +1,10 @@
 #pragma once
+#define DROPS_COUNT 4
+#define GLASES_COUNT 4
+#define X_MAX 1000
+#define X_MIN 0
+#define Y_MAX 1000
+#define Y_MIN 0
 
 class Location {
 protected:
@@ -17,11 +23,11 @@ protected:
 public:
 	Point(int initX = 0, int initY = 0);
 	~Point();
-	virtual void show();
-	virtual void hide();
+	virtual void show() = 0;
+	virtual void hide() = 0;
 	bool isVisible();
 	void moveTo(int newX, int newY);
-	void drug(int shift);
+	virtual void drug(int shift);
 };
 
 class Figure : public Point {
@@ -33,33 +39,95 @@ public:
 	~Figure();
 	virtual void show() = 0;
 	virtual void hide() = 0;
+	virtual void drug(int shift);
 	int getHeight();
 	int getWidth();
-	bool onTriggerEnter(Figure* enterFigure);
+	bool ñollision(Figure* enterFigure);
 };
 
 class Glass : public Figure {
-private:
-	int** wallMatrix;
+protected:
+	int id;
 public:
-	Glass(int initX = 0, int initY = 0, int initHeight = 60, int initWidth = 60);
+	Glass(int initX = 0, int initY = 0, int initHeight = 32, int initWidth = 32);
 	~Glass();
 	virtual void show();
 	virtual void hide();
+	int getId();
 };
 
-class Drop : public Figure {
+class TStandardGlass : public Glass {
 public:
-	Drop(int initX = 0, int initY = 0, int initHeight = 40, int initWidth = 40);
-	~Drop();
+	TStandardGlass(int initX = 0, int initY = 0, int initHeight = 32, int initWidth = 32);
+	~TStandardGlass();
 	virtual void show();
 	virtual void hide();
 };
 
-class Wall : public Figure {
+class TMagicGlass : public Glass {
 public:
-	Wall(int initX = 0, int initY = 0, int initHeight = 100, int initWidth = 100);
-	~Wall();
+	TMagicGlass(int initX = 0, int initY = 0, int initHeight = 32, int initWidth = 32);
+	~TMagicGlass();
+	virtual void show();
+	virtual void hide();
+};
+
+class TFireMagicGlass : public Glass {
+public:
+	TFireMagicGlass(int initX = 0, int initY = 0, int initHeight = 32, int initWidth = 32);
+	~TFireMagicGlass();
+	virtual void show();
+	virtual void hide();
+};
+
+class TPoisonGlass : public Glass {
+public:
+	TPoisonGlass(int initX = 0, int initY = 0, int initHeight = 32, int initWidth = 32);
+	~TPoisonGlass();
+	virtual void show();
+	virtual void hide();
+};
+
+
+class Drop : public Figure {
+protected:
+	int id;
+public:
+	Drop(int initX = 0, int initY = 0, int initHeight = 16, int initWidth = 16);
+	~Drop();
+	virtual void show();
+	virtual void hide();
+	int getId();
+};
+
+class TStandardDrop : public Drop {
+public:
+	TStandardDrop(int initX = 0, int initY = 0, int initHeight = 16, int initWidth = 16);
+	~TStandardDrop();
+	virtual void show();
+	virtual void hide();
+};
+
+class TMagicDrop : public Drop {
+public:
+	TMagicDrop(int initX = 0, int initY = 0, int initHeight = 16, int initWidth = 16);
+	~TMagicDrop();
+	virtual void show();
+	virtual void hide();
+};
+
+class TFireMagicDrop : public TMagicDrop {
+public:
+	TFireMagicDrop(int initX = 0, int initY = 0, int initHeight = 16, int initWidth = 16);
+	~TFireMagicDrop();
+	virtual void show();
+	virtual void hide();
+};
+
+class TPoisonDrop : public Drop {
+public:
+	TPoisonDrop(int initX = 0, int initY = 0, int initHeight = 16, int initWidth = 16);
+	~TPoisonDrop();
 	virtual void show();
 	virtual void hide();
 };
