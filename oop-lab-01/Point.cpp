@@ -206,12 +206,12 @@ TFireMagicGlass::~TFireMagicGlass(void) { };
 
 void TFireMagicGlass::show(void) {
 	visible = true;
-	Image::magicDropShow(hdc, x, y);
+	Image::fireMagicGlassShow(hdc, x, y);
 }
 
 void TFireMagicGlass::hide(void) {
 	visible = false;
-	Image::magicDropHide(hdc, x, y);
+	Image::fireMagicGlassHide(hdc, x, y);
 }
 
 TPoisonGlass::TPoisonGlass(int initX, int initY, int initHeight, int initWidth) : Glass(initX, initY, initHeight, initWidth) {
@@ -288,14 +288,12 @@ TFireMagicDrop::~TFireMagicDrop(void) { };
 
 void TFireMagicDrop::show(void) {
 	visible = true;
-	Image::magicGlassShow(hdc, x - 8, y - 8);
-	Image::magicDropShow(hdc, x, y);
+	Image::fireMagicDropShow(hdc, x, y);
 }
 
 void TFireMagicDrop::hide(void) {
 	visible = false;
-	Image::magicGlassHide(hdc, x - 8, y - 8);
-	Image::magicDropHide(hdc, x, y);
+	Image::fireMagicDropHide(hdc, x, y);
 }
 
 

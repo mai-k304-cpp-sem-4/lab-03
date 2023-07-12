@@ -17,7 +17,7 @@ void main() {
 	setlocale(LC_ALL, "ru");
 	srand(time(0));
 	//cout << "Введите размер шага: ";
-	int shift = 5;
+	int shift = 8;
 	//cin >> shift;
 	int x0 = 130, y0 = 250; // Начальные координаты
 	HWND hwnd = GetConcolWindow();
@@ -26,7 +26,7 @@ void main() {
 	int matr_per[GLASES_COUNT][DROPS_COUNT] = {
 		{0, 0, 2, 0},
 		{1, 1, 2, 0},
-		{0, 2, 2, 3},
+		{0, 2, 0, 3},
 		{3, 0, 2, 3}
 	};
 
