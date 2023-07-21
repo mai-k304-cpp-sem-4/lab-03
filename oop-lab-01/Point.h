@@ -30,6 +30,31 @@ public:
 	virtual void drug(int shift);
 };
 
+class IBotle {
+protected:
+	virtual void neck() = 0; // Горлышко
+	virtual void cork() = 0; // Пробка
+	virtual void body() = 0; // Тело
+	virtual void bottom() = 0; // Дно
+};
+
+class Botle : public Point, IBotle {
+protected:
+	int height;
+	int width;
+public:
+	Botle(int initX = 0, int initY = 0, int initHeight = 0, int initWidth = 0);
+	~Botle();
+	int getHeight();
+	int getWidth();
+	virtual void neck(); // Горлышко
+	virtual void cork(); // Пробка
+	virtual void body(); // Тело
+	virtual void bottom(); // Дно
+	virtual void show();
+	virtual void hide();
+};
+
 class Figure : public Point {
 protected:
 	int height;
@@ -45,13 +70,27 @@ public:
 	bool сollision(Figure* enterFigure);
 };
 
+class IGlass {
+protected:
+	virtual void top(int _glassMatrixR[32][32], int _glassMatrixG[32][32], int _glassMatrixB[32][32]) = 0;
+	virtual void bottom(int _glassMatrixR[32][32], int _glassMatrixG[32][32], int _glassMatrixB[32][32]) = 0;
+	virtual void left(int _glassMatrixR[32][32], int _glassMatrixG[32][32], int _glassMatrixB[32][32]) = 0;
+	virtual void rigth(int _glassMatrixR[32][32], int _glassMatrixG[32][32], int _glassMatrixB[32][32]) = 0;
+	virtual void middle(int _glassMatrixR[32][32], int _glassMatrixG[32][32], int _glassMatrixB[32][32]) = 0;
+};
+
 class Glass : public Figure {
 protected:
 	int id;
 public:
 	Glass(int initX = 0, int initY = 0, int initHeight = 32, int initWidth = 32);
 	~Glass();
-	virtual void show();
+	virtual void top(int _glassMatrixR[32][32], int _glassMatrixG[32][32], int _glassMatrixB[32][32]);
+	virtual void bottom(int _glassMatrixR[32][32], int _glassMatrixG[32][32], int _glassMatrixB[32][32]);
+	virtual void left(int _glassMatrixR[32][32], int _glassMatrixG[32][32], int _glassMatrixB[32][32]);
+	virtual void rigth(int _glassMatrixR[32][32], int _glassMatrixG[32][32], int _glassMatrixB[32][32]);
+	virtual void middle(int _glassMatrixR[32][32], int _glassMatrixG[32][32], int _glassMatrixB[32][32]);
+	virtual void show() = 0;
 	virtual void hide();
 	int getId();
 };

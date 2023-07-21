@@ -58,6 +58,9 @@ void main() {
 			drops[2]->show();
 			drops[3]->show();
 
+			Botle botle(100, 100, 60, 60);
+			botle.show();
+
 			while (!KEY_DOWN(49)) {
 				// Перемещение по карте капель
 				for (int i = 0; i < DROPS_COUNT; i++) {
